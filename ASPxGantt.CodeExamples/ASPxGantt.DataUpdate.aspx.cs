@@ -56,10 +56,10 @@ public partial class _Default : System.Web.UI.Page {
     }
 
     private void InsertResourceAssignmentValues(GanttDataInsertValues args) {
-        var key = args.Key;
         var resAssignment = new ResourceAssignment { ResourceAssignmentID = ProjectDataContext.ResourceAssignments.Count };
         resAssignment.ResourceID = (int)args.NewValues["ResourceID"];
         resAssignment.TaskID = (int)args.NewValues["TaskID"];
+        args.Key = resAssignment.TaskID;
     }
 
     private void DeleteResourceValues(ASPxDataDeleteValues args) {
@@ -100,6 +100,7 @@ public partial class _Default : System.Web.UI.Page {
         var newValues = args.NewValues;
         LoadNewTaskValues(newValues, task);
         ProjectDataContext.Tasks.Add(task);
+        args.Key = task.ID;
     }
 
     private void UpdateTaskValues(OrderedDictionary keys, OrderedDictionary newValues) {
