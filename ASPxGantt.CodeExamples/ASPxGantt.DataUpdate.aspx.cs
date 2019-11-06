@@ -59,7 +59,7 @@ public partial class _Default : System.Web.UI.Page {
         var resAssignment = new ResourceAssignment { ResourceAssignmentID = ProjectDataContext.ResourceAssignments.Count };
         resAssignment.ResourceID = (int)args.NewValues["ResourceID"];
         resAssignment.TaskID = (int)args.NewValues["TaskID"];
-        args.Key = resAssignment.TaskID;
+        args.Key = resAssignment.ResourceAssignmentID;
     }
 
     private void DeleteResourceValues(ASPxDataDeleteValues args) {
@@ -76,6 +76,7 @@ public partial class _Default : System.Web.UI.Page {
         var resource = new TaskResource { ResourceID = ProjectDataContext.Resources.Count };
         resource.Name = (string)args.NewValues["Name"];
         ProjectDataContext.Resources.Add(resource);
+        args.Key = resource.ResourceID;
     }
 
     private void DeleteDependencyValues(ASPxDataDeleteValues args) {
@@ -88,6 +89,7 @@ public partial class _Default : System.Web.UI.Page {
         dependency.ParentID = (int)args.NewValues["ParentID"];
         dependency.DependentID = (int)args.NewValues["DependentID"];
         ProjectDataContext.Dependencies.Add(dependency);
+        args.Key = dependency.DependencyID;
     }
 
     private void DeleteTaskValues(OrderedDictionary keys) {
